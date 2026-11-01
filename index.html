@@ -89,7 +89,7 @@ tr{break-inside:avoid}thead{display:table-header-group}
 @media print{
  #print-expense-section{break-before:page!important;page-break-before:always!important}
  #print-expense-section>h2{break-after:avoid!important;page-break-after:avoid!important}
- #print-expenses .print-expenses-table{break-inside:avoid;page-break-inside:avoid}
+ #print-expenses .print-expenses-table{break-inside:auto!important;page-break-inside:auto!important}
  #print-expenses .print-expenses-table tbody tr{break-inside:avoid!important;page-break-inside:avoid!important}
 }
 </style></head><body><main><h1>Spese gestione</h1><h2>Casa Vollon</h2><nav class="navlinks no-print" aria-label="Sezioni del programma"><a href="#cisterna">Cisterna</a><a href="#bena">Tabella BENA</a><a href="#misurazioni">Misurazioni</a><a href="#letture">Contabilizzazioni</a><a href="#altrespese">Altre spese</a><a href="#riepilogo">Riepilogo finale</a></nav><section class="card"><h2>Periodo di gestione</h2><div class="grid"><div><label for="periodstart">Data iniziale</label><input id="periodstart" type="text" inputmode="numeric" placeholder="GG/MM/AAAA" autocomplete="off"></div><div><label for="periodend">Data finale</label><input id="periodend" type="text" inputmode="numeric" placeholder="GG/MM/AAAA" autocomplete="off"></div></div><p id="perioderror" class="error"></p></section><p class="hint">Serbatoio orizzontale · Ø 1.600 mm · lunghezza 1.880 mm · calotte 80 mm · capacità 3.940,8 L. Dati della tabella installatore ogni 10 cm; valori intermedi interpolati.</p>
