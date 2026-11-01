@@ -71,6 +71,21 @@ tr{break-inside:avoid}thead{display:table-header-group}
  #print-expenses .print-expense-people{display:block!important;clear:both!important;margin-top:2mm!important}
  #print-expenses .print-expense-title{margin-bottom:2mm!important}
 }
+
+/* Rendiconto: tabella spese compatta, solo nella stampa */
+@media print{
+ #expenses{display:none!important}
+ #print-expenses{display:block!important}
+ #print-expenses .print-expenses-table{width:100%!important;table-layout:fixed!important;border-collapse:collapse!important;font-size:9pt!important}
+ #print-expenses .print-expenses-table thead{display:table-header-group!important}
+ #print-expenses .print-expenses-table tr{break-inside:avoid!important;page-break-inside:avoid!important}
+ #print-expenses .print-expenses-table th,#print-expenses .print-expenses-table td{padding:6px 5px!important;border-bottom:1px solid #cbd7df!important;text-align:left!important;vertical-align:top!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;line-height:1.35!important}
+ #print-expenses .print-expenses-table th{background:#edf3f7!important;font-weight:700!important}
+ #print-expenses .print-expenses-table td:nth-child(1),#print-expenses .print-expenses-table td:nth-child(5){text-align:right!important}
+ #print-expenses .print-expenses-table td:nth-child(2){white-space:pre-wrap!important}
+ #print-expenses .print-expenses-table tbody tr:nth-child(even){background:#f8fbfd!important}
+ #print-expenses .print-expenses-table .people{font-size:8pt!important}
+}
 </style></head><body><main><h1>Spese gestione</h1><h2>Casa Vollon</h2><nav class="navlinks no-print" aria-label="Sezioni del programma"><a href="#cisterna">Cisterna</a><a href="#bena">Tabella BENA</a><a href="#misurazioni">Misurazioni</a><a href="#letture">Contabilizzazioni</a><a href="#altrespese">Altre spese</a><a href="#riepilogo">Riepilogo finale</a></nav><section class="card"><h2>Periodo di gestione</h2><div class="grid"><div><label for="periodstart">Data iniziale</label><input id="periodstart" type="text" inputmode="numeric" placeholder="GG/MM/AAAA" autocomplete="off"></div><div><label for="periodend">Data finale</label><input id="periodend" type="text" inputmode="numeric" placeholder="GG/MM/AAAA" autocomplete="off"></div></div><p id="perioderror" class="error"></p></section><p class="hint">Serbatoio orizzontale · Ø 1.600 mm · lunghezza 1.880 mm · calotte 80 mm · capacità 3.940,8 L. Dati della tabella installatore ogni 10 cm; valori intermedi interpolati.</p>
 <section class="card"><h2 id="cisterna">1. Serbatoio e giacenza</h2><div class="tank"><svg viewBox="0 0 720 290" role="img" aria-label="Serbatoio con gasolio blu e primi 10 centimetri non pescabili in rosso"><defs><clipPath id="tankclip"><rect x="70" y="25" width="555" height="225" rx="109"/></clipPath></defs><rect x="70" y="25" width="555" height="225" rx="109" fill="#e6eef4" stroke="#375970" stroke-width="4"/><g clip-path="url(#tankclip)"><rect id="water" x="70" y="138" width="555" height="112" fill="#218bca"/><rect id="redzone" x="70" y="236" width="555" height="14" fill="#db3d3d"/><line x1="70" y1="236" x2="625" y2="236" stroke="#8e1b1b" stroke-dasharray="6 5" stroke-width="2"/></g><path d="M350 10 V236 h18" stroke="#243c4a" stroke-width="8" fill="none"/><text x="120" y="85" font-size="22" fill="#24495f" font-weight="bold">BENA</text><text id="tanklabel" x="145" y="164" font-size="24" fill="white" font-weight="bold">—</text><text id="tankheight" x="145" y="193" font-size="18" fill="white">—</text><text x="645" y="125" font-size="17" fill="#28445a">160 cm</text><text x="470" y="279" font-size="16" fill="#a52727" font-weight="bold">10 cm non pescabili</text></svg></div><div class="legend"><span><span class="dot" style="background:#218bca"></span>Gasolio sopra il pescante</span><span><span class="dot" style="background:#db3d3d"></span>Primi 10 cm non pescabili (99,4 L a 10 cm)</span></div><div class="grid"><div><label for="cm">Altezza misurata (cm)</label><input id="cm" type="number" inputmode="decimal" min="0" max="160" step="any" value="80"></div><div><label for="litri">Giacenza totale (litri)</label><input id="litri" type="number" inputmode="decimal" min="0" max="3940.8" step="any" value="1970.4"></div><div class="tile"><small>Giacenza attuale</small><strong id="giacenza">—</strong></div></div><p id="tankerr" class="error"></p></section>
 <section class="card"><h2 id="bena">Tabella di riferimento BENA</h2><div class="scroll"><table><thead><tr><th>Centimetri</th><th>Litri</th></tr></thead><tbody id="tablebody"><tr><td>0 cm</td><td>0,0 L</td></tr><tr><td>10 cm</td><td>99,4 L</td></tr><tr><td>20 cm</td><td>276,1 L</td></tr><tr><td>30 cm</td><td>499,0 L</td></tr><tr><td>40 cm</td><td>755,3 L</td></tr><tr><td>50 cm</td><td>1.036,7 L</td></tr><tr><td>60 cm</td><td>1.336,6 L</td></tr><tr><td>70 cm</td><td>1.649,6 L</td></tr><tr><td>80 cm</td><td>1.970,4 L</td></tr><tr><td>90 cm</td><td>2.291,2 L</td></tr><tr><td>100 cm</td><td>2.604,2 L</td></tr><tr><td>110 cm</td><td>2.904,2 L</td></tr><tr><td>120 cm</td><td>3.185,5 L</td></tr><tr><td>130 cm</td><td>3.441,9 L</td></tr><tr><td>140 cm</td><td>3.664,7 L</td></tr><tr><td>150 cm</td><td>3.841,4 L</td></tr><tr><td>160 cm</td><td>3.940,8 L</td></tr></tbody></table></div></section><section class="card"><h2>2. Rabbocco</h2><div class="grid"><div><label for="rdate">Data del rifornimento</label><input id="rdate" type="text" inputmode="numeric" placeholder="GG/MM/AAAA" autocomplete="off"></div><div><label for="rqty">Litri caricati</label><input id="rqty" type="number" inputmode="decimal" min="0" step="any" placeholder="Es. 500"></div><div class="tile"><small>Nuova giacenza prevista</small><strong id="postlitri">—</strong><small id="postcm">—</small></div></div><button id="addrefill" type="button">Conferma rabbocco</button></section>
@@ -162,20 +177,17 @@ function updatePrintAccounting(){var body=document.getElementById('print-account
 function updatePrintExpenses(){
  var target=document.getElementById('print-expenses'),source=document.getElementById('expenses');
  if(!target||!source)return;
- var cards=source.querySelectorAll('.expense-card'),html='';
+ var cards=source.querySelectorAll('.expense-card');
  function field(card,name){var el=card.querySelector('[data-field="'+name+'"]');return el?String(el.value||''):''}
- function cell(label,value){return '<div class="print-expense-field"><b>'+esc(label)+'</b>'+esc(value||'—')+'</div>'}
+ var html='<table class="print-expenses-table"><colgroup><col style="width:5%"><col style="width:30%"><col style="width:16%"><col style="width:15%"><col style="width:10%"><col style="width:10%"><col style="width:14%"></colgroup><thead><tr><th>N.</th><th>Descrizione spesa</th><th>Azienda</th><th>Fattura</th><th>Importo (€)</th><th>Pagamento</th><th>Condomini</th></tr></thead><tbody>';
  for(var i=0;i<cards.length;i++){
   var card=cards[i],people=[],checks=card.querySelectorAll('input[type="checkbox"][data-person]');
   for(var j=0;j<checks.length;j++)if(checks[j].checked){var label=checks[j].closest('label');people.push(label?label.textContent.trim():'Condomino '+(j+1))}
   var payment=card.querySelector('[data-field="paid"]'),paid=payment&&payment.value==='true'?'Pagata':'Non pagata';
-  html+='<article class="print-expense-card"><div class="print-expense-title">Spesa '+(i+1)+'</div><div class="print-expense-grid">'+
-   cell('Spesa / descrizione',field(card,'description'))+cell('Azienda',field(card,'company'))+
-   cell('N. fattura',field(card,'invoice'))+cell('Importo (€)',field(card,'amount'))+
-   cell('Stato pagamento',paid)+'</div><div class="print-expense-people"><b>Attribuisci ai condomini</b>'+
-   (people.length?people.map(function(p){return '<span>✓ '+esc(p)+'</span>'}).join(''):'—')+'</div></article>';
+  var amount=field(card,'amount').replace(',','.'),num=Number(amount),formatted=amount.trim()!==''&&isFinite(num)?num.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2}):amount;
+  html+='<tr><td>'+esc(i+1)+'</td><td>'+esc(field(card,'description')||'—')+'</td><td>'+esc(field(card,'company')||'—')+'</td><td>'+esc(field(card,'invoice')||'—')+'</td><td>'+esc(formatted)+'</td><td>'+esc(paid)+'</td><td class="people">'+esc(people.join(', ')||'—')+'</td></tr>';
  }
- target.innerHTML=html
+ target.innerHTML=html+'</tbody></table>'
 }
 window.updateCasaPrintExpenses=updatePrintExpenses;
 window.addEventListener('beforeprint',updatePrintExpenses);
